@@ -1,9 +1,10 @@
 #include <stdarg.h>
 #include <stdio.h>
+#include "main.h"
 /**
-* printf - function that produces output according to a format,
-* @format - to produce output
-* Return - output/count
+* _printf - a function that produces output according to a format.
+* @ format - to produce output
+* Returns: the number of characters printed
 */
 int _printf(const char *format, ...)
 {
@@ -15,22 +16,24 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			 i++;
-			 switch (format[i])
+			i++;
+			switch (format[i])
+			{
 				case 'c':
-				  putchar(va_arg(args, int));
-				  count++;
-				  break;
+				    putchar(va_arg(args, int));
+				    count++;
+				    break;
 				case 's':
-				  fputs(va_arg(args, char*), stdout);
-				  count += strlen(va_arg(args, char*));
-				  break;
+				    fputs(va_arg(args, char*), stdout);
+				    count += strlen(va_arg(args, char*));
+				    break;
 				case '%':
-				  putchar('%');
-				  count++;
-				  break;
+				    putchar('%');
+				    count++;
+				    break;
 				default:
-				  break;
+				    break;
+			}
 		}
 		else
 		{
@@ -40,6 +43,4 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 	return count;
-
-
 }
